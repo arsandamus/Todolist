@@ -13,7 +13,7 @@
 
 <script>
 
-    import Item from '../../Item/Item'
+    import Item from './Item/Item'
 
     export default {
         name:'ListTodo',
