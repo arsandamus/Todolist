@@ -1,0 +1,21 @@
+.item-todo {
+    display: flex;
+    justify-content: space-between;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    padding: 20px 30px 20px 30px;
+    font-size: 20px;
+    height: 80px;
+}
+.buttons {
+    width: 100px;
+    display: flex;
+    place-content: flex-end space-between;
+}
+
+    
+    
