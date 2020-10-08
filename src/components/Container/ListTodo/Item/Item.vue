@@ -1,11 +1,11 @@
 <template>
 
     <div class="item-todo">
-        <checkbox @click="toggleTodo(todo.id)"></checkbox>
+        <checkbox @click="toggleTodo()"></checkbox>
         <p>{{ todo.task }}</p>
         <div class="buttons">
-            <button-edit @click="editTodo"></button-edit>
-            <button-delete @click="deleteTodo(todo.id)"></button-delete>
+            <button-edit @click="editTodo()"></button-edit>
+            <button-delete @click="deleteTodo()"></button-delete>
         </div>
     </div>
 
@@ -26,14 +26,14 @@
             'checkbox': Checkbox
         },
         methods: {
-            deleteTodo: function(id) {
-                this.$store.dispatch("deleteTodo", id)
+            deleteTodo: () => {
+                this.$store.dispatch("deleteTodo", this.todo)
             },
-            toggleTodo: function(id) {
-                this.$store.dispatch("toggleTodo", id)
+            toggleTodo: () => {
+                this.$store.dispatch("toggleTodo", this.todo)
             },
-            editTodo: function(id) {
-                this.$store.dispatch("editTodo", id)
+            editTodo: () => {
+                this.$store.dispatch("editTodo", this.todo)
             }
         }
     }

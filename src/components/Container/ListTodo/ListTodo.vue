@@ -4,7 +4,7 @@
             <li :key="index" 
                 v-for="(todo, index) in todos" 
                 :class="{ checked: todo.completed }">
-                <item v-bind:id="index" :todo="todo"></item>
+                <item :todo="todo"></item>
             </li>
         </ul>
 

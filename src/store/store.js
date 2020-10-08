@@ -20,31 +20,27 @@ export default new Vuex.Store({
     mutations: {
 
         // Ajoute une nouvelle tâche
-        ADD_TODO: (state, payload) => {
+        ADD_TODO: (state, todoItem) => {
 
-            const newTask = {
-                id: payload.newId,
-                task: payload.task,
+            state.todos.push({
+                task: todoItem,
                 completed: false
-            }
-
-            state.todos.push(newTask)
-        },
+            });
+            },
         // Définit si une tâche est faite ou non
-        TOGGLE_TODO: (state, payload) => {
-            const item = state.todos.find(todo => todo.id === payload)
+        TOGGLE_TODO: (state, todoItem) => {
+            const item = state.todos.find(todo => todo.id === todoItem)
             item.completed = !item.completed
         },
         // Supprime une tâche
-        DELETE_TODO: (state, payload) => {
-            const index = state.todos.indexOf(payload)
+        DELETE_TODO: (state, todoItem) => {
+            let index = state.todos.indexOf(item => item.task === todoItem.task)
             state.todos.splice(index, 1)
         },
         // Edite une tâche
-        EDIT_TODO: (state, { payload, id = payload.id, task = payload.task, completed = payload.completed}) => {
+        EDIT_TODO: (state, { task = todoItem.task, completed = todoItem.completed}) => {
             const index = state.todos.splice(index, 1, {
-                ...payload,
-                id,
+                ...todoItem,
                 task,
                 completed
             })
@@ -52,14 +48,14 @@ export default new Vuex.Store({
     },
     // Fonctions qui activent les mutations
     actions: {
-        addTodo: (context, payload) => {
-            context.commit("ADD_TODO", payload)
+        addTodo: ({commit}, todoItem) => {
+            commit('ADD_TODO', todoItem)
         },
-        toggleTodo: (context, payload) => {
-            context.commit("TOGGLE_TODO", payload)
+        toggleTodo: ({commit}, todoItem) => {
+            commit("TOGGLE_TODO", todoItem)
         },
-        deleteTodo: (context, payload) => {
-            context.commit("DELETE_TODO", payload)
+        deleteTodo: ({commit}, todoItem) => {
+            commit("DELETE_TODO", todoItem)
         },
         editTodo: (context, payload) => {
             context.commit("EDIT_TODO", payload)
