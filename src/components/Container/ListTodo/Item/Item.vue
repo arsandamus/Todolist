@@ -1,12 +1,13 @@
 <template>
 
     <div class="item-todo">
-        <checkbox @click="toggleTodo()"></checkbox>
+        <checkbox @click.native="toggleTodo"></checkbox>
         <p>{{ todo.task }}</p>
         <div class="buttons">
-            <button-edit @click="editTodo()"></button-edit>
-            <button-delete @click="deleteTodo()"></button-delete>
+            <button-edit @click.native="editTodo"></button-edit>
+            <button-delete @click.native="deleteTodo"></button-delete>
         </div>
+        <div v-if="showInput">hello</div>
     </div>
 
 </template>
@@ -20,19 +21,25 @@
     export default {
         name: 'Item',
         props: ['todo'],
+        data() {
+            return{
+                showInput: false,
+            }
+        },
         components: {
             'button-delete': ButtonDelete,
             'button-edit': ButtonEdit,
             'checkbox': Checkbox
         },
         methods: {
-            deleteTodo: () => {
+            deleteTodo() {
                 this.$store.dispatch("deleteTodo", this.todo)
             },
-            toggleTodo: () => {
+            toggleTodo() {
                 this.$store.dispatch("toggleTodo", this.todo)
             },
-            editTodo: () => {
+            editTodo() {
+                this.showInput = !this.showInput
                 this.$store.dispatch("editTodo", this.todo)
             }
         }

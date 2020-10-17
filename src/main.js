@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import store from './store/store'
+import store from './store/index'
 import router from './router'
 
 Vue.use(router)

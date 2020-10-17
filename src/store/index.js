@@ -23,28 +23,32 @@ export default new Vuex.Store({
         ADD_TODO: (state, todoItem) => {
 
             state.todos.push({
+                id: state.todos.length + 1,
                 task: todoItem,
                 completed: false
             });
             },
         // Définit si une tâche est faite ou non
         TOGGLE_TODO: (state, todoItem) => {
-            const item = state.todos.find(todo => todo.id === todoItem)
-            item.completed = !item.completed
+
+            const toggle = state.todos.find(todo => todo.id === todoItem.id).completed
+            state.todos.find(todo => todo.id === todoItem.id).completed = !toggle
+            
         },
         // Supprime une tâche
         DELETE_TODO: (state, todoItem) => {
-            let index = state.todos.indexOf(item => item.task === todoItem.task)
+            let index = state.todos.indexOf(item => item.id === todoItem.id)
             state.todos.splice(index, 1)
         },
         // Edite une tâche
-        EDIT_TODO: (state, { task = todoItem.task, completed = todoItem.completed}) => {
-            const index = state.todos.splice(index, 1, {
-                ...todoItem,
-                task,
-                completed
-            })
-    }
+    //     EDIT_TODO: (state, id) => {
+    //         state.todos.find(todo => todo.id === id) = 
+    //         const index = state.todos.splice(index, 1, {
+    //             ...,
+    //             task,
+    //             completed
+    //         })
+    // }
     },
     // Fonctions qui activent les mutations
     actions: {
@@ -57,8 +61,8 @@ export default new Vuex.Store({
         deleteTodo: ({commit}, todoItem) => {
             commit("DELETE_TODO", todoItem)
         },
-        editTodo: (context, payload) => {
-            context.commit("EDIT_TODO", payload)
+        editTodo: ({commit}, todoItem) => {
+            commit("EDIT_TODO", todoItem)
         }
     }
 })

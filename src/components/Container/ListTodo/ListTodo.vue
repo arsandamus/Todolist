@@ -1,13 +1,12 @@
 <template>
     <div>
         <ul>
-            <li :key="index" 
+            <li :key="index"
                 v-for="(todo, index) in todos" 
                 :class="{ checked: todo.completed }">
                 <item :todo="todo"></item>
             </li>
         </ul>
-
     </div>
 </template>
 
