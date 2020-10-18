@@ -2,12 +2,14 @@
 
     <div class="item-todo">
         <checkbox @click.native="toggleTodo"></checkbox>
-        <p>{{ todo.task }}</p>
+        <p v-if="!showInput">{{ todo.task }}</p>
+        <div v-if="showInput">
+            <input v-model="editTask" type="text" id="editTask">
+        </div>
         <div class="buttons">
             <button-edit @click.native="editTodo"></button-edit>
             <button-delete @click.native="deleteTodo"></button-delete>
         </div>
-        <div v-if="showInput">hello</div>
     </div>
 
 </template>

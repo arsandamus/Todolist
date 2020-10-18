@@ -1,9 +1,13 @@
 <template>
     <div>
+        <div v-if="todos.length === 0">
+            <h3>Reposes-toi !</h3>
+            <i class="fas fa-battery-empty"></i>
+        </div>
         <ul>
             <li :key="index"
-                v-for="(todo, index) in todos" 
-                :class="{ checked: todo.completed }">
+                v-for="(todo, index) in todos"
+                :class="{completed: todo.completed}">
                 <item :todo="todo"></item>
             </li>
         </ul>

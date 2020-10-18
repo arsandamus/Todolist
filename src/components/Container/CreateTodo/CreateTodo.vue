@@ -25,6 +25,7 @@
         methods: {
             addTodo() {
                 this.$store.dispatch("addTodo", this.task)
+                this.task = ''
             }
         }
     }
